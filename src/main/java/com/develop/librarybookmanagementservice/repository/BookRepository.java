@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    @Query("SELECT * FROM BOOK WHERE TITLE LIKE %:title%")
-    Optional<List<Book>> getBookByTitle(@Param("title") String title);
-    //int addBookToDb(BookRequestDto bookRequestDto);
+    @Query("SELECT b FROM Book b WHERE b.title LIKE %:title%")
+    Optional<List<Book>> getBookByTitle(String title);
 }

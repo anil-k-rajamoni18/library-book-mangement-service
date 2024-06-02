@@ -36,13 +36,15 @@ public class APIMetrics implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
         long duration = System.currentTimeMillis() - startTime;
 
-        log.warn("Request Response Summary: {} {} {} {} {} {}",
-                kv(REQUEST_REMOTE_HOST_MDC_KEY, req.getRemoteHost()),
-                kv(REQUEST_REQUEST_URI, req.getRequestURI()),
-                kv(REQUEST_REQUEST_URL, req.getRequestURL()),
-                kv(REQUEST_METHOD, req.getMethod()),
-                kv("HTTPStatus", res.getStatus()),
-                kv("LATENCY in ms", duration));
+        if (!req.getRequestURI().startsWith("/h2-console/")) {
+            log.warn("Request Response Summary: {} {} {} {} {} {}",
+                    kv(REQUEST_REMOTE_HOST_MDC_KEY, req.getRemoteHost()),
+                    kv(REQUEST_REQUEST_URI, req.getRequestURI()),
+                    kv(REQUEST_REQUEST_URL, req.getRequestURL()),
+                    kv(REQUEST_METHOD, req.getMethod()),
+                    kv("HTTPStatus", res.getStatus()),
+                    kv("LATENCY in ms", duration));
+        }
     }
 
     @Override
