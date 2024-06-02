@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        maven {
+            url "${artifactory_contextUrl}/maven-repo/"
+        }
+    }
+}
+rootProject.name = 'library-book-management-service'
