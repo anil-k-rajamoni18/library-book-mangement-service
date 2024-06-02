@@ -28,14 +28,14 @@ public class BookController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    private ResponseEntity<List<BookResponseDto>> getBooks() {
+    public ResponseEntity<List<BookResponseDto>> getBooks() {
         log.info("invoking getBooks method");
         return ResponseEntity.ok(bookService.getBooks());
     }
 
     @GetMapping("/{bookId}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    private ResponseEntity<BookResponseDto> getBookById(@PathVariable("bookId") int bookId) {
+    public ResponseEntity<BookResponseDto> getBookById(@PathVariable("bookId") int bookId) {
         log.info("invoking getBookById method");
         return ResponseEntity.ok(bookService.getBookById(bookId));
     }
@@ -50,7 +50,7 @@ public class BookController {
 
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    private ResponseEntity<Response> addBook(@RequestBody BookRequestDto bookRequestDto) {
+    public ResponseEntity<Response> addBook(@RequestBody BookRequestDto bookRequestDto) {
         log.info("invoking addBook method");
         Response response = bookService.addBook(bookRequestDto);
         return ResponseEntity.ok(response);
