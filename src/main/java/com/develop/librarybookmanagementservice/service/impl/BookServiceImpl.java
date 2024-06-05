@@ -115,7 +115,7 @@ public class BookServiceImpl  implements BookService {
                         .genre(book.getGenre())
                         .build())
                 .toList();
-        return null;
+        return books;
     }
 
     private int getBookRowNumber(int bookId) {

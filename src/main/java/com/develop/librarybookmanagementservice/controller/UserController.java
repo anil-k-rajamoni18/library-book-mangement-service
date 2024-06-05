@@ -4,7 +4,6 @@ package com.develop.librarybookmanagementservice.controller;
 import com.develop.librarybookmanagementservice.entity.UserInfo;
 import com.develop.librarybookmanagementservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +16,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public String addUser(@RequestBody UserInfo info) {
-        return "User added successfully";
+        return userService.addUser(info);
     }
 }

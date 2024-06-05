@@ -34,14 +34,14 @@ public class BookController {
     }
 
     @GetMapping("/{bookId}")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
     public ResponseEntity<BookResponseDto> getBookById(@PathVariable("bookId") int bookId) {
         log.info("invoking getBookById method");
         return ResponseEntity.ok(bookService.getBookById(bookId));
     }
 
     @GetMapping("/search")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<List<BookResponseDto>> getBookByTitle(@RequestParam String title) {
         log.info("invoking getBookByTitle method");
         log.info("searching for book with title: {}", title);
@@ -49,7 +49,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<Response> addBook(@RequestBody BookRequestDto bookRequestDto) {
         log.info("invoking addBook method");
         Response response = bookService.addBook(bookRequestDto);

@@ -38,16 +38,15 @@ public class Handler extends ResponseEntityExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorResponse, BAD_REQUEST);
     }
-
     @ExceptionHandler(Exception.class)
-public ResponseEntity<Object> handleAllExceptions(final Exception ex) {
+    public ResponseEntity<Object> handleAllExceptions(final Exception ex) {
         log.error("Exception thrown", ex);
         final ErrorResponse errorResponse = ErrorResponse.builder()
                 .code("500")
-                .description("Internal Server Error")
+                .description(ex.getMessage())
                 .build();
         return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(errorResponse);
-    }
+        }
 
     @ExceptionHandler(BookException.class)
     public ResponseEntity<Object> handleBookException(final BookException ex) {
