@@ -1,7 +1,9 @@
 spring:
   application:
     name: library-book-management-service
-
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
   datasource:
     url: jdbc:h2:file:./bookdb
     username: sa
@@ -9,7 +11,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
   h2:

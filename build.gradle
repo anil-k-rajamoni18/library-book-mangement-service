@@ -27,6 +27,8 @@ dependencies {
 	implementation "net.logstash.logback:logstash-logback-encoder:7.3"
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.5.0'
+
 	runtimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

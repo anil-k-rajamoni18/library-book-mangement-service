@@ -54,6 +54,7 @@ public class BookServiceImpl  implements BookService {
                     bookRequestDto.getGenre(),
                     new int[10]
             );
+            conn.close();
             if (resultMap.getOrDefault("rowId", 0) != 0) {
                 return Response.builder()
                         .message(String.format("Book added with id: %s successfully in rowNumber: %s", resultMap.get("bookId"), resultMap.get("rowId")))
@@ -62,6 +63,7 @@ public class BookServiceImpl  implements BookService {
             } else {
                 return Response.builder().message("Failed to add book").status("Failed").build();
             }
+
         } catch (SQLException e) {
             throw new BookException("SQL Connection failed", "500");
         }
