@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -116,6 +117,26 @@ public class BookServiceImpl  implements BookService {
                         .build())
                 .toList();
         return books;
+    }
+
+    @Override
+    public Response addAllBooks(List<BookRequestDto> bookRequestDtos) {
+        try {
+            bookRequestDtos.forEach(this::addBook);
+            return Response.builder().message("All books added successfully").status("Success").build();
+        } catch (Exception e) {
+            log.error("Exception occurred while adding all books | ErrorMessage: {}", e.getMessage());
+            throw new BookException("Failed to add all books", "500");
+        }
+    }
+
+    @Override
+    public Response deleteBook(int bookId) {
+        Optional<Book> book = bookRepository.findById(bookId);
+        book.ifPresentOrElse(bookRepository::delete, () -> {
+            throw new BookException(String.format("Book not found with id: %s", bookId), "404");
+        });
+        return Response.builder().message(String.format("Book with id: %s deleted successfully", bookId)).status("Success").build();
     }
 
     private int getBookRowNumber(int bookId) {

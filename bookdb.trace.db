@@ -288,3 +288,8 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:522)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 65 more
+2024-06-06 13:57:43.762185+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USER_INFO \000d\000a\000d\000aDELETE [*]FROM USER_INFO"; SQL statement:
+SELECT * FROM USER_INFO 
+
+DELETE FROM USER_INFO [42000-224]

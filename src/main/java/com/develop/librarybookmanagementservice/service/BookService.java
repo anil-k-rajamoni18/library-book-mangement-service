@@ -14,4 +14,8 @@ public interface BookService {
     BookResponseDto getBookById(int bookId);
 
     List<BookResponseDto> getBookByTitle(String title);
+
+    Response addAllBooks(List<BookRequestDto> bookRequestDtos);
+
+    Response deleteBook(int bookId);
 }

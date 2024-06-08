@@ -59,7 +59,7 @@ public class CustomStoreProcedure {
                 pstmt.setInt(2, bookId);
                 pstmt.executeUpdate();
             }
-            log.info("Book added successfully");
+            log.info("Book added successfully with id: {} in rowNumber: {}", bookId, rowId[0]);
             return Map.of("bookId", bookId, "rowId", rowId[0]);
         } catch (Exception ex) {
             log.error("Failed to add book", ex);
